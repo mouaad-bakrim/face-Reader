@@ -131,6 +131,8 @@ systemctl start httpd
 
 #Ask for public ip of instance to the user to change in the api request.
 
+cd /root/
+
 aws iam create-role --role-name YourNewRole --assume-role-policy-document file://YourNewRole-Trust-Policy.json
 
 aws iam create-instance-profile --instance-profile-name YourNewRole-Instance-Profile
