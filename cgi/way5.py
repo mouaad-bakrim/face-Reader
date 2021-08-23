@@ -108,7 +108,7 @@ def face_reader():
                 smile = "Objects Not Available"
                 print("\n")
                 print(smile)
-         
+
         print("\n")
         print("DETECTED FACE GESTURES GIVEN BELOW:-")
         resfaces = rek.detect_faces(
@@ -149,7 +149,7 @@ def face_reader():
         # voice(smile)
             print("\n")
             print(smile)
-        
+
         # voice(smile)
         if resfaces['FaceDetails'][0]['AgeRange']['Low'] > 0 :
             min_age=(resfaces['FaceDetails'][0]['AgeRange']['Low'])
