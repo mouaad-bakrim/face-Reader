@@ -14,6 +14,8 @@ systemctl enable httpd
 
 systemctl start httpd
 
+aws configure
+
 
 #disable selinux
 
@@ -129,7 +131,20 @@ systemctl start httpd
 
 #Ask for public ip of instance to the user to change in the api request.
 
-echo -e "Please Enter Public Ip Of Your EC2-Instance."
+aws iam create-role --role-name YourNewRole --assume-role-policy-document file://ec2-policy.json
+
+aws iam create-instance-profile --instance-profile-name YourNewRole-Instance-Profile
+
+aws iam add-role-to-instance-profile --role-name YourNewRole --instance-profile-name YourNewRole-Instance-Profile
+
+aws ec2 describe-instances --query "Reservations[].Instances[].{PublicIP:PublicIpAddress,Name:Tags[?Key=='Name']|[0].Value,CustomerName:Tags[?Key=='CustomerName']|[0].Value,Status:State.Name,InstanceID:InstanceId}" --output table
+echo -en "\n Enter Instance-ID : "
+read insid
+
+aws ec2 associate-iam-instance-profile --instance-id $insd --iam-instance-profile Name=YourNewRole-Instance-Profile
+
+
+echo -en "\nPlease Enter Public Ip Of Your EC2-Instance : "
 
 read PublicIp
 
