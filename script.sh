@@ -159,6 +159,6 @@ echo -e "Congatulations !!"
 
 echo -e "Your Setup Has Been Done Successfully | Docker is ready for you "
 
-echo -e "For Access The Docker Web App | Please Type Public Ip OF Your Ec2 Instance In browser"
+echo -e "For Access The Face Reader Web App | Please Type Public Ip OF Your Ec2 Instance In browser"
 
 
