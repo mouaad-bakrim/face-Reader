@@ -4,7 +4,7 @@
 
 yum install git -y
 
-pip3 install boto3 -y
+pip3 install boto3 
 
 #install httpd and enable
 
