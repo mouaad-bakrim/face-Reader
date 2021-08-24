@@ -145,7 +145,7 @@ aws ec2 describe-instances --query "Reservations[].Instances[].{PublicIP:PublicI
 echo -en "\n Enter Instance-ID : "
 read insid
 
-aws ec2 associate-iam-instance-profile --instance-id $insd --iam-instance-profile Name=YourNewRole-Instance-Profile5
+aws ec2 associate-iam-instance-profile --instance-id $insid --iam-instance-profile Name=YourNewRole-Instance-Profile5
 
 
 echo -en "\nPlease Enter Public Ip Of Your EC2-Instance : "
