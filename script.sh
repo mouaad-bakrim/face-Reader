@@ -133,17 +133,19 @@ systemctl start httpd
 
 cd /root/
 
-aws iam create-role --role-name YourNewRole --assume-role-policy-document file://YourNewRole-Trust-Policy.json
+aws iam create-role --role-name YourNewRole5 --assume-role-policy-document file://YourNewRole-Trust-Policy.json
 
-aws iam create-instance-profile --instance-profile-name YourNewRole-Instance-Profile
+aws iam attach-role-policy --role-name YourNewRole5 --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
 
-aws iam add-role-to-instance-profile --role-name YourNewRole --instance-profile-name YourNewRole-Instance-Profile
+aws iam create-instance-profile --instance-profile-name YourNewRole-Instance-Profile5
+
+aws iam add-role-to-instance-profile --role-name YourNewRole5 --instance-profile-name YourNewRole-Instance-Profile5
 
 aws ec2 describe-instances --query "Reservations[].Instances[].{PublicIP:PublicIpAddress,Name:Tags[?Key=='Name']|[0].Value,CustomerName:Tags[?Key=='CustomerName']|[0].Value,Status:State.Name,InstanceID:InstanceId}" --output table
 echo -en "\n Enter Instance-ID : "
 read insid
 
-aws ec2 associate-iam-instance-profile --instance-id $insd --iam-instance-profile Name=YourNewRole-Instance-Profile
+aws ec2 associate-iam-instance-profile --instance-id $insd --iam-instance-profile Name=YourNewRole-Instance-Profile5
 
 
 echo -en "\nPlease Enter Public Ip Of Your EC2-Instance : "
